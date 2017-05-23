@@ -1,5 +1,5 @@
 <?php
-class Coursewareplus extends ParentClass {
+class Coursewareplus {
   // additional properties and methods here
 }
 /**
@@ -7,7 +7,7 @@ class Coursewareplus extends ParentClass {
  *
  *  e.g. [wpcourse course="2" showunits="true" /]
  */
-function WPCW_shortcodes_showTrainingCourse($atts, $content)
+function TCCW_shortcodes_showTrainingCourse($atts, $content)
 {
 	extract( shortcode_atts( array(
 		'course' 		=> 0,
@@ -244,7 +244,7 @@ function TCCW_courses_renderCourseList($courseID, $options)
 global $wpcwdb, $wpdb;
 //see if this course has a pre AND a post test
 $pretestUnitID =$wpdb->get_var($wpdb->prepare("SELECT ID from wp_posts p,  wp_wpcw_units_meta c where p.ID = c.unit_id  and post_title like '%pre-test%' and post_type='%s' and parent_course_id =%d",'course_unit',$courseID)); 
-$postTestUnitID =$wpdb->get_var($wpdb->prepare("SELECT ID from wp_posts p,  wp_wpcw_units_meta c where p.ID = c.unit_id  and post_title like '%post-test%' and post_type='%s' and parent_course_id =%d" 'course_unit',$courseID)); 
+$postTestUnitID =$wpdb->get_var($wpdb->prepare("SELECT ID from wp_posts p,  wp_wpcw_units_meta c where p.ID = c.unit_id  and post_title like '%post-test%' and post_type='%s' and parent_course_id =%d", 'course_unit',$courseID)); 
 $courseType = $wpdb->get_var("SELECT course_type from wp_wpcw_course_extras where course_id=". $courseID); 
 //if this is a course that is a training course with a pre and post test then do this
 if ($pretestUnitID  > 0 && $postTestUnitID > 0 || $courseType =="LERN"){
@@ -337,8 +337,7 @@ $enableUnits = 1; //just enable all the units
 				// Default is not to collapse.
 			}
 		}
-
-		$quizGradeArea = false;
+       $quizGradeArea = false;
         // We're showing the toggle section, so add it.
 		if ($show_toggle_col) {
 			$moduleTitleArea = false;
@@ -572,15 +571,7 @@ $enableUnits = 1; //just enable all the units
 		} // end show units
 }
 $html .= '</table>';
-
-	// Add powered by link, which has manual override.
-	if (!$hide_credit_link)
-	{
-		$settings = TidySettings_getSettings(WPCW_DATABASE_SETTINGS_KEY);
-		$html .= WPCW_generatedPoweredByLink($settings);
-	}
-
-	return $html;
+return $html;
 }
 
 
@@ -591,7 +582,7 @@ $html .= '</table>';
  *
  *  e.g. [wpcourse_progress courses="2" user_progress="true" user_grade="true" /]
  */
-function WPCW_shortcodes_showTrainingCourseProgress($atts, $content)
+function TCCW_shortcodes_showTrainingCourseProgress($atts, $content)
 {
 	extract( shortcode_atts( array(
 		'courses' 			=> 'all',
@@ -758,13 +749,6 @@ function WPCW_shortcodes_showTrainingCourseProgress($atts, $content)
 		}
 
 		$html .= '</tbody></table>'; // end .wpcw_fe_summary_course_progress
-
-			if (!$hide_credit_link)
-			{
-				$settings = TidySettings_getSettings(WPCW_DATABASE_SETTINGS_KEY);
-				$html .= WPCW_generatedPoweredByLink($settings);
-			}
-
 	return $html;
 }
 
@@ -773,7 +757,7 @@ function WPCW_shortcodes_showTrainingCourseProgress($atts, $content)
  *
  *  e.g. [wpcourse_enroll courses="2,3" enroll_text="Enroll Here" ]
  */
-function wpcw_create_enrollment_button($atts){
+function TCCW_create_enrollment_button($atts){
 
 	extract( shortcode_atts( array(
 		'courses' 		=> false,

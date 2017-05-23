@@ -33,7 +33,7 @@ include 'lib/ajax_admin.inc.php';
 	//include_once 'lib/ce-templates_frontend.inc.php';
 
 	// Shortcodes
-	//include_once 'lib/shortcodes.inc.php';
+	include_once 'lib/shortcodes.inc.php';
 }
 
 
@@ -44,7 +44,7 @@ include 'lib/ajax_admin.inc.php';
 //include_once 'lib/class_user_progress.inc.php';
 
 // Widgets
-//include_once 'lib/widget_progress.inc.php';
+include_once 'lib/widget_progress.inc.php';
 
 
 function CE_plugin_init()
@@ -64,8 +64,7 @@ function CE_plugin_init()
 		wp_enqueue_media();
 		// Menus
 		add_action('admin_menu','CE_menu_MainMenu');
-
-		// add the bootstrap for form elements
+        // add the bootstrap for form elements
 		wp_enqueue_style('bootstrap', 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
 		//add the jquery
         wp_enqueue_script( 'ce_ajax', plugin_dir_url( __FILE__ ) . 'js/ce-admin.js', array( 'jquery' ) );

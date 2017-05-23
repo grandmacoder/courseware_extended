@@ -105,7 +105,15 @@ if(!current_user_can('manage_options')){
 				 <label for="coach_list">Coach email(s) will appear as you select them.</label>
 				 <input id="coach_list" name="coach_list" value="" size="80">
 				 </div>
-			    <input type=button name="btnSaveExtras" value="Save Course Extra Info" id ="btnSaveExtras" class="btn btn-default>
+				 <div class="form-group">
+				 <label for="wid">If relevant, enter the wid for the main video in the course (LERN).</label>
+				 <input id="wid" name="wid" value="" size="20">
+				 </div>
+				 <div class="form-group">
+				 <label for="entry_id">If relevant, enter the entry_id for the main video in the course (LERN).</label>
+				 <input id="entry_id" name="entry_id" value="" size="20">
+				 </div>
+				<input type=button name="btnSaveExtras" value="Save Course Extra Info" id ="btnSaveExtras" class="btn btn-default>
 			   </form>
 		  </div>
 <?php

@@ -23,7 +23,7 @@ if (query_vals['course_id'] > 0 ){
          $('#course_type').val(response['course_type']);
 		 $('#post_test_id').val(response['post_test_id']);
          $('#course_intro_page_path').val(response['course_intro_page_path']);
-        if (response['enrollment_key']!= null){
+         if (response['enrollment_key']!= null){
 		  $('#enrollment_key').append("Your key is " + response['enrollment_key']);
 		  $('#enrollment_y').attr('checked', true);
 		 }
@@ -31,6 +31,8 @@ if (query_vals['course_id'] > 0 ){
 		 $('#start_date').val(response['start_date']);
 		 $('#upload_study_guide').val(response['study_guide_path']);
 		 $('#max_enrolled').val(response['max_enrolled']);
+		 $('#wid').val(response['wid']);
+		 $('#entry_id').val(response['entry_id']);
 		 if (response['course_logo_path'] != null){
 		 $('#current_logo').html("<img src='"+response['course_logo_path']+"' style='max-width: 130px;'>" );
 		 }

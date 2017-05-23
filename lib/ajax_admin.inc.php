@@ -37,6 +37,8 @@ $row->course_intro_page_path =="" ? $course_intro_page_path=0 : $course_intro_pa
 $start_date=$row->start_date;
 $study_guide_path=$row->study_guide_path;
 $max_enrolled=$row->max_enrolled;
+$entry_id= $row->entry_id;
+$wid=$row->wid;
 }
 //get the email addresses for the coaches
 if ($coach_id <> ""){
@@ -57,6 +59,8 @@ $ajaxResults=array(
 'start_date'=>$start_date,
 'study_guide_path'=>$study_guide_path,
 'max_enrolled'=>$max_enrolled,
+'entry_id'=>$entry_id,
+'wid'=>$wid,
 );
 echo json_encode($ajaxResults);
 die();
@@ -107,6 +111,8 @@ $wpdb->update(
 		'start_date' => $_POST['start_date'],
 		'study_guide_path' => $_POST['upload_study_guide'],
 		'max_enrolled' => $_POST['max_enrolled'],
+		'wid' => $_POST['wid'],
+	    'entry_id'=>$_POST['entry_id'],
 	), 
 	array( 'course_id' => $_POST['course_id']), 
 	array(  '%s', '%s','%s','%d','%d','%s','%s','%s','%s','%s','%d'), 
@@ -117,8 +123,8 @@ else{
 //insert
 $wpdb->query( $wpdb->prepare( 
 	   "INSERT INTO wp_wpcw_course_extras
-		( course_id,course_logo_path,course_start_page_path,course_type,post_test_id,national_module,course_intro_page_path,enrollment_key,coach_id,start_date,study_guide_path,max_enrolled)
-		VALUES ('%d', '%s', '%s','%s','%d','%d','%s','%s','%s','%s','%s','%d')",
+		( course_id,course_logo_path,course_start_page_path,course_type,post_test_id,national_module,course_intro_page_path,enrollment_key,coach_id,start_date,study_guide_path,max_enrolled,wid,entry_id)
+		VALUES ('%d', '%s', '%s','%s','%d','%d','%s','%s','%s','%s','%s','%d','%s','%s')",
 		$_POST['course_id'],
 		$logopath,
 		$courseStartPage,
@@ -130,7 +136,9 @@ $wpdb->query( $wpdb->prepare(
 		$coachIDs,
 		$_POST['start_date'],
 		$_POST['upload_study_guide'],
-		$_POST['max_enrolled']
+		$_POST['max_enrolled'],
+		$_POST['wid'],
+		$_POST['entry_id']
 		));
 $q=$wpdb->last_query;
 }
