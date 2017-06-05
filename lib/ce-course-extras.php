@@ -1,6 +1,5 @@
 <?php
 function add_courseware_extras(){
-
 if(!current_user_can('manage_options')){
 		wp_die(__('You do not have sufficient permissions to access this page.'));
 	}
@@ -77,8 +76,9 @@ if(!current_user_can('manage_options')){
 				<hr />
 			    <div class="form-group">
 		        <label for="enrollment_key">Does this course need an enrollment key?</label><br />
-				<input type="checkbox" id="enrollment_y" name="enrollment_y"/> Yes, create an enrollment key.</input>
-				<p id='enrollment_key' name='enrollment_key'></p>
+				<input type="checkbox" id="enrollment_y" name="enrollment_y"/> Yes, create an enrollment key.</input><br>
+				<label for="enrollment_key">Enrollment key:</label>		
+				<input  type="text" readonly id='enrollment_key' name='enrollment_key'></input><br>
 			    </div>
 				<div class="form-group">
 				<label for="start_date">Enter the start date if there is one.</label>				

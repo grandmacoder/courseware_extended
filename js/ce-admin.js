@@ -22,9 +22,9 @@ if (query_vals['course_id'] > 0 ){
          $('#course_start_page_id').val(response['course_start_page_path']);
          $('#course_type').val(response['course_type']);
 		 $('#post_test_id').val(response['post_test_id']);
-         $('#course_intro_page_path').val(response['course_intro_page_path']);
-         if (response['enrollment_key']!= null){
-		  $('#enrollment_key').append("Your key is " + response['enrollment_key']);
+         $('#course_intro_page_id').val(response['course_intro_page_path']);
+         if (response['enrollment_key']!= null && response['enrollment_key']!= ''){
+		  $('#enrollment_key').val( response['enrollment_key']);
 		  $('#enrollment_y').attr('checked', true);
 		 }
 		 $('#coach_list').val(response['coach_emails']);
@@ -63,6 +63,7 @@ query_to_json = function(data) {
   });
   return j;
 }
+console.log ("datastring " + data);
 var jsonData = JSON.stringify(query_to_json(data));
 console.log(data);
      $.ajax({
@@ -76,8 +77,8 @@ console.log(data);
 		if (response['course_logo_path'] != null){
 		 $('#current_logo').html("<img src='"+ response['course_logo_path']+"' style='max-width: 130px;'>" );
 		}
-		 if (response['enrollment_key']!= null){
-		  $('#enrollment_key').append("Your key is " + response['enrollment_key']);
+		 if (response['enrollment_key_message']!= null){
+		  $('#enrollment_key').append("Your key is " + response['enrollment_key_message']);
 		  $('#enrollment_y').attr('checked', true);
 		 }
         },

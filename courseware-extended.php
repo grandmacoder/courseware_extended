@@ -25,28 +25,7 @@ if (is_admin()) {
 include 'lib/ce-course-extras.php';
 // AJAX
 include 'lib/ajax_admin.inc.php';
-} else {
-	// Frontend Only
-	//include_once 'lib/ce-frontend_only.inc.php';
-
-	// Templates
-	//include_once 'lib/ce-templates_frontend.inc.php';
-
-	// Shortcodes
-	include_once 'lib/shortcodes.inc.php';
 }
-
-
-
-//include_once 'lib/ajax_frontend.inc.php';
-
-// Common
-//include_once 'lib/class_user_progress.inc.php';
-
-// Widgets
-include_once 'lib/widget_progress.inc.php';
-
-
 function CE_plugin_init()
 {
     $startPageCatID = 519;
@@ -75,8 +54,7 @@ function CE_plugin_init()
 
 		
 	}
-
-	// ### Frontend
+    // ### Frontend
 	else
 	{
 		// Scripts and styles
@@ -84,29 +62,14 @@ function CE_plugin_init()
         // Shortcodes
 		//add_shortcode('course_extended', 			'CE_shortcodes_showTrainingCourse');
 		//add_shortcode('course_extended_progress', 	'CE_shortcodes_showTrainingCourseProgress');
-
-	}
-
-
+    }
 }
 add_action('init', 'CE_plugin_init');
-//add_action('widgets_init', create_function('', 'register_widget("CE_CourseProgress");'));
-
-/**
- * Create the main menu.
- */
 function CE_menu_MainMenu()
 {
 //add a menu item for course extras
 add_menu_page( 'Course Extras', 'Course Extras',  'manage_options', 'courseware-extras', 'add_courseware_extras' );	
 }
-
-
-
-
-
-
-
 /**
  * Add the scripts we want loaded in the header.
  */
@@ -116,7 +79,5 @@ function CE_addCustomScripts_FrontEnd()
 		return;
 	}
 //add scripts here 
-	
 }
-
 ?>

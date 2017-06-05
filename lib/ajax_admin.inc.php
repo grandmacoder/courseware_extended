@@ -1,11 +1,10 @@
 <?php
 /**
  * Admin only AJAX functions.
- */
+ */ 
 if (isset($_GET['term'])){
 global $wpdb;
-$sql="select id, display_name, user_email from wp_users where display_name like '%".$_REQUEST['term']."%' or user_email like '%".$_REQUEST['term']."%'"; 
-$userinfo = $wpdb->get_results($sql, OBJECT);
+$userinfo = $wpdb->get_results($wpdb->prepare("select id, display_name, user_email from wp_users where display_name like %s or user_email like %s",'%' . $wpdb->esc_like($_REQUEST['term']) . '%',$wpdb->esc_like($_REQUEST['term']) . '%', OBJECT));
 foreach ($userinfo as $info){
 $thelabel = $info->display_name ."-". $info->user_email ;
 $results[]=array('id'=>$info->user_email,'label' =>$thelabel);
@@ -13,7 +12,7 @@ $results[]=array('id'=>$info->user_email,'label' =>$thelabel);
 echo json_encode($results);
 die();
 }
- 
+
 function CE_AJAX_getCourseUnitSelectOptions(){
 global $wpdb;
 $course_id = $_POST['course_id'];
@@ -67,18 +66,23 @@ die();
 }
 function CE_AJAX_saveUpdateExtras(){
 global $wpdb;
-$enrollment_key="";
 //find out if there is a record in course extras yet
 $hasExtras = $wpdb->get_var("Select count(*) from wp_wpcw_course_extras where course_id =" . $_POST['course_id']);
 //initialize variables
 if ($_POST['post_test_id'] == 0){$post_test_id ="";}
-if ($_POST['needkey'] == 1){$enrollment_key = strtoupper(md5(uniqid(rand(),true))); }
+if ($_POST['needkey'] == 1){
+	if ($_POST['enrollment_key'] == ""){
+	$enrollment_key = strtoupper(md5(uniqid(rand(),true))); 
+	}
+	else{
+	$enrollment_key =$_POST['enrollment_key'];	
+	}
+}
 if (strlen($_POST['coach_list'])  > 0){
 $aCoaches=explode(',',$_POST['coach_list']);
 	for ($i=0; $i < count($aCoaches)-1; $i++){
 		$coachEmail = substr($aCoaches[$i], strpos($aCoaches[$i],'-') + 1, -1);
 		$userid=$wpdb->get_var("Select ID from wp_users where user_email like '%". $coachEmail."%'");
-		$showCoach .=  $wpdb->last_query;
 		$coachIDs.=$userid .",";
 	}
 $coachIDs =substr($coachIDs, 0, -1);
@@ -140,7 +144,6 @@ $wpdb->query( $wpdb->prepare(
 		$_POST['wid'],
 		$_POST['entry_id']
 		));
-$q=$wpdb->last_query;
 }
 $ajaxResults=array(
 'course_id' =>$_POST['course_id'],
@@ -150,10 +153,12 @@ $ajaxResults=array(
 'post_test_id'=>$_POST['post_test_id'],
 'course_intro_page_path'=>$_POST['course_intro_page_id'],
 'enrollment_key'=>$_POST['needkey'],
+'enrollment_key'=>$enrollment_key,
 'coach_emails'=>$_POST['coach_list'],
 'start_date'=>$_POST['start_date'],
 'study_guide_path'=>$_POST['ad_study_guide'],
 'max_enrolled'=>$_POST['max_enrolled'],
+'sql'=> $sql,
 );
 echo json_encode($ajaxResults);
 die();
