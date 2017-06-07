@@ -3,10 +3,10 @@ function add_courseware_extras(){
 if(!current_user_can('manage_options')){
 		wp_die(__('You do not have sufficient permissions to access this page.'));
 	}
-	$courseExtrasList = new Course_Extras_List_Table();
-    $courseExtrasList->prepare_items();
-   ?> 
-   <style>
+$courseExtrasList = new Course_Extras_List_Table();
+$courseExtrasList->prepare_items();
+?>
+ <style>
    .message {font-size: 18px; color: #000; width: 50%; line-height: 150%; background-color:#ffebe8; border:1px solid #cc0000; }
    </style>
    <div class='wrap'>
@@ -116,10 +116,10 @@ if(!current_user_can('manage_options')){
 				<input type=button name="btnSaveExtras" value="Save Course Extra Info" id ="btnSaveExtras" class="btn btn-default>
 			   </form>
 		  </div>
+
 <?php
 }
-class Course_Extras_List_Table extends WP_List_Table
-{
+class Course_Extras_List_Table extends WP_List_Table{
     /**
      * Prepare the items for the table to process
      *

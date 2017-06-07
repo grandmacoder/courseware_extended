@@ -7,18 +7,12 @@
  * Author: Amy Carlson
  * Author URI: http://grandmacoder.com
  */
-
 /** The current version of the database. */
 define('Courseware_extended_PLUGIN_VERSION', 			'1.0.0');		// Used for plugin updates
-
 /** The ID used for menus */
 define('COURSEWARE_EXTENDED_PLUGIN_ID', 				'CE_courseware');
-
 /** The ID of the plugin for update purposes, must be the file path and file name. */
 define('COURSEWARE_EXTENDED_UPDATE_ID', 		'courseware_extended/courseware-extended.php');
-
-
-
 // Admin Only
 if (is_admin()) {
 	// Plugin-specific
@@ -28,8 +22,8 @@ include 'lib/ajax_admin.inc.php';
 }
 function CE_plugin_init()
 {
-    $startPageCatID = 519;
-	$introPageCatID = 520;
+    $startPageCatID = 539;
+	$introPageCatID = 538;
 	add_option( 'intro_page_categories',  $introPageCatID, '', 'yes' );
 	add_option( 'start_page_categories', $startPageCatID, '', 'yes' );
 	$aCourseTypes =array('learning module','mini-module','LERN','short-course','inactive');
@@ -60,8 +54,6 @@ function CE_plugin_init()
 		// Scripts and styles
 		CE_addCustomScripts_FrontEnd();
         // Shortcodes
-		//add_shortcode('course_extended', 			'CE_shortcodes_showTrainingCourse');
-		//add_shortcode('course_extended_progress', 	'CE_shortcodes_showTrainingCourseProgress');
     }
 }
 add_action('init', 'CE_plugin_init');
