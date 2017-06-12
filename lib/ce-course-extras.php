@@ -74,6 +74,7 @@ $courseExtrasList->prepare_items();
 				</select>
 				</div>
 				<hr />
+				<h3>These items pertain to LERN topics.</h3>
 			    <div class="form-group">
 		        <label for="enrollment_key">Does this course need an enrollment key?</label><br />
 				<input type="checkbox" id="enrollment_y" name="enrollment_y"/> Yes, create an enrollment key.</input><br>

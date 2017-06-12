@@ -7,6 +7,12 @@
  * Author: Amy Carlson
  * Author URI: http://grandmacoder.com
  */
+ //for network install, include list table class
+ if(!class_exists('WP_List_Table')){
+    require_once( ABSPATH . 'wp-admin/includes/screen.php' );
+    require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
+}
+
 /** The current version of the database. */
 define('Courseware_extended_PLUGIN_VERSION', 			'1.0.0');		// Used for plugin updates
 /** The ID used for menus */
@@ -16,9 +22,9 @@ define('COURSEWARE_EXTENDED_UPDATE_ID', 		'courseware_extended/courseware-extend
 // Admin Only
 if (is_admin()) {
 	// Plugin-specific
-include 'lib/ce-course-extras.php';
+include ('lib/ce-course-extras.php');
 // AJAX
-include 'lib/ajax_admin.inc.php';
+include ('lib/ajax_admin.inc.php');
 }
 function CE_plugin_init()
 {
