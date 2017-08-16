@@ -3,7 +3,7 @@ var current_page = $(location).attr('href');
 //handle look for course id in the qs and if present load the select lists and load screen
 if(current_page.indexOf("?") != -1){
 var query_vals = {}; 
-$.each(document.location.search.substr(1).split('&'),function(c,q){ var i = q.split('='); query_vals[i[0].toString()] = i[1].toString(); });
+$.each(document.location.search.substr(1).split('&'),function(c,q){ var i = q.split('='); query_vals[i[0]] = i[1]; });
 if (query_vals['course_id'] > 0 ){
 	//a course has been selected look up all the data and populate the form.
 	var course_id = query_vals['course_id'];

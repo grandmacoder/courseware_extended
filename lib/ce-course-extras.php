@@ -5,6 +5,8 @@ if(!current_user_can('manage_options')){
 	}
 $courseExtrasList = new Course_Extras_List_Table();
 $courseExtrasList->prepare_items();
+//add media for file media library uploader
+wp_enqueue_media();
 ?>
  <style>
    .message {font-size: 18px; color: #000; width: 50%; line-height: 150%; background-color:#ffebe8; border:1px solid #cc0000; }
@@ -91,13 +93,13 @@ $courseExtrasList->prepare_items();
 				</div>
                 <div class="form-group">				
 				<div id="studyguide_upload">
-					<label for="upload_image">Add the study guide path or a url if you are including a study guide.</label>
+					<label for="upload_image">Add the promotional url or pdf if you are including a promotion link on the registration page. ie(<a  href="https://app.emaze.com/@AQLFQRLF/response-prompting-copy1" title="Overview" target="_blank">More information</a>)</label>
 					<input id="upload_study_guide" type="text" size="36" name="upload_study_guide" value="" class="form-control" style="width:auto;"/> 
-					<input id="upload_studyguide_button" class="btn btn-default" type="button" value="Select or Upload Study Guide" />
+					<input id="upload_studyguide_button" class="btn btn-default" type="button" value="Select or Upload" />
 				</div>
 				</div>
 				<div class="form-group">
-				<p>Does this course have a coach/coaches? Find them by entering part of their name or email address.</p>
+				<p>Does this course have a coach/coaches? Find them by entering part of their name or email address. The input box below will populate.</p>
 			     <label class="screen-reader-text" for="user-search-input">Search Users:</label>
 				 <input size="60"  id="user-search-input" name="s" value="" class="ui-autocomplete-input" autocomplete="off">
                  </br>

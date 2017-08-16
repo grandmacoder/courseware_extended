@@ -163,12 +163,13 @@ $ajaxResults=array(
 echo json_encode($ajaxResults);
 die();
 }
+
 //register function calls with wordpress by adding wp_ajax to callback for function to run
 //call the function with wp_ajax key, excluding the wp_ajax part in ajax call
 add_action('wp_ajax_ce_course_unit_options', 'CE_AJAX_getCourseUnitSelectOptions');
-add_action( 'wp_ajax_nopriv_ce_course_unit_options', 'CE_AJAX_getCourseUnitSelectOptions' );
+//add_action( 'wp_ajax_nopriv_ce_course_unit_options', 'CE_AJAX_getCourseUnitSelectOptions' );
 add_action('wp_ajax_ce_auto_complete_users', 'CE_AJAX_autoCompleteUsers');
-add_action( 'wp_ajax_nopriv_ce_auto_complete_users', 'CE_AJAX_autoCompleteUsers' );
+//add_action( 'wp_ajax_nopriv_ce_auto_complete_users', 'CE_AJAX_autoCompleteUsers' );
 add_action('wp_ajax_ce_save_update_extras', 'CE_AJAX_saveUpdateExtras');
-add_action( 'wp_ajax_nopriv_ce_save_update_extras', 'CE_AJAX_saveUpdateExtras' );
+//add_action( 'wp_ajax_nopriv_ce_save_update_extras', 'CE_AJAX_saveUpdateExtras' );
 ?>
